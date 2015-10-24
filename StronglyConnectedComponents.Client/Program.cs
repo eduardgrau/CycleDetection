@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace StronglyConnectedComponents.Client
 {
@@ -11,18 +12,16 @@ namespace StronglyConnectedComponents.Client
         // A→B→D→C
         static void Main()
         {
+            var feeder = new LineFeeder("data.txt");
+            var factory = new VertexFactory<string>();
+            foreach (var line in feeder)
+            {
+                var splittedLine = line.Split(',');
+                factory.Add(splittedLine[0],splittedLine[1]);
+            }
+            //var path = @"C:\Users\Eduard\Source\Repos\CycleDetection\data.txt";
             var graph = new List<Vertex<string>>();
-            var vA = new Vertex<string>("A");
-            var vB = new Vertex<string>("B");
-            var vC = new Vertex<string>("C");
-            var vD = new Vertex<string>("D");
-            vB.Dependencies.Add(vD);
-            vD.Dependencies.Add(vC);
-            vA.Dependencies.Add(vB);
-            vB.Dependencies.Add(vC);
-            graph.Add(vA);
-            graph.Add(vB);
-            graph.Add(vC);
+            graph.AddRange(factory.VertexDictionary.Select(vde=>vde.Value));
 
             var detector = new StronglyConnectedComponentFinder<string>();
             var components = detector.DetectCycle(graph);
