@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace StronglyConnectedComponents
 {
     public class StronglyConnectedComponent<T> : IEnumerable<Vertex<T>>
     {
-        private LinkedList<Vertex<T>> list;
+        private readonly LinkedList<Vertex<T>> list;
 
         public StronglyConnectedComponent()
         {
@@ -29,19 +26,13 @@ namespace StronglyConnectedComponents
             return this.list.GetEnumerator();
         }
 
-        public int Count
-        {
-            get
-            {
-                return this.list.Count;
-            }
-        }
+        public int Count => this.list.Count;
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return this.list.GetEnumerator();
         }
 
-        public bool IsCycle { get { return list.Count > 1; } }
+        public bool IsCycle => list.Count > 1;
     }
 }

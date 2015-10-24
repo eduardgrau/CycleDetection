@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -12,9 +10,8 @@ namespace StronglyConnectedComponents.Tests
         [TestMethod]
         public void EmptyGraph()
         {
-            var graph = new List<Vertex<int>>();
             var detector = new StronglyConnectedComponentFinder<int>();
-            var cycles = detector.DetectCycle(graph);
+            var cycles = detector.DetectCycle(new List<Vertex<int>>());
             Assert.AreEqual(0, cycles.Count);
         }
 
@@ -22,8 +19,10 @@ namespace StronglyConnectedComponents.Tests
         [TestMethod]
         public void SingleVertex()
         {
-            var graph = new List<Vertex<int>>();
-            graph.Add(new Vertex<int>(1));
+            var graph = new List<Vertex<int>>
+            {
+                new Vertex<int>(1)
+            };
             var detector = new StronglyConnectedComponentFinder<int>();
             var components = detector.DetectCycle(graph);
             Assert.AreEqual(1, components.Count);
@@ -173,6 +172,38 @@ namespace StronglyConnectedComponents.Tests
             Assert.AreEqual(1, components.Count(c => c.Count == 3));
             Assert.AreEqual(1, components.Count(c => c.Count == 1));
             Assert.IsTrue(components.Single(c => c.Count == 1).Single() == vD);
+        }
+
+        // B→D
+        // D→C
+        // A→B→C
+        // A→B→D→C
+        [TestMethod]
+        public void LinearTwoLines()
+        {
+            var graph = new List<Vertex<string>>();
+            var vA = new Vertex<string>("A");
+            var vB = new Vertex<string>("B");
+            var vC = new Vertex<string>("C");
+            var vD = new Vertex<string>("D");
+            vB.Dependencies.Add(vD);
+            vD.Dependencies.Add(vC);
+            vA.Dependencies.Add(vB);
+            vB.Dependencies.Add(vC);
+            graph.Add(vA);
+            graph.Add(vB);
+            graph.Add(vC);
+
+            var detector = new StronglyConnectedComponentFinder<string>();
+            StronglyConnectedComponentList<string> components = detector.DetectCycle(graph);
+
+            Assert.AreEqual(4, components.Count);
+            Assert.AreEqual(4, components.IndependentComponents().Count());
+            Assert.AreEqual(0, components.Cycles().Count());
+            Assert.AreEqual("C", components.First().First().Value);
+            Assert.AreEqual("D", components.Skip(1).First().First().Value);
+            Assert.AreEqual("B", components.Skip(2).First().First().Value);
+            Assert.AreEqual("A", components.Skip(3).First().First().Value);
         }
     }
 }

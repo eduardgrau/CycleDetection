@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StronglyConnectedComponents", "StronglyConnectedComponents\StronglyConnectedComponents.csproj", "{E387991E-EE65-442C-AB2A-4EA35A7EB83B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EC797A57-070B-4A85-85C1-E17B369DF7D9}"
@@ -13,10 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StronglyConnectedComponentsTests", "StronglyConnectedComponentsTests\StronglyConnectedComponentsTests.csproj", "{1D0BC1E5-8226-4283-A224-3043FD17BCB2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StronglyConnectedComponents.Client", "StronglyConnectedComponents.Client\StronglyConnectedComponents.Client.csproj", "{110BB24B-958F-46AF-8D77-89621E5AE1E5}"
+EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = StronglyConnectedComponents.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -30,8 +31,15 @@ Global
 		{1D0BC1E5-8226-4283-A224-3043FD17BCB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D0BC1E5-8226-4283-A224-3043FD17BCB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D0BC1E5-8226-4283-A224-3043FD17BCB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{110BB24B-958F-46AF-8D77-89621E5AE1E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{110BB24B-958F-46AF-8D77-89621E5AE1E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{110BB24B-958F-46AF-8D77-89621E5AE1E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{110BB24B-958F-46AF-8D77-89621E5AE1E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = StronglyConnectedComponents.vsmdi
 	EndGlobalSection
 EndGlobal

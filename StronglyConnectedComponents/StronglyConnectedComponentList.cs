@@ -1,13 +1,12 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace StronglyConnectedComponents
 {
     public class StronglyConnectedComponentList<T> : IEnumerable<StronglyConnectedComponent<T>>
     {
-        private LinkedList<StronglyConnectedComponent<T>> collection;
+        private readonly LinkedList<StronglyConnectedComponent<T>> collection;
 
         public StronglyConnectedComponentList()
         {
@@ -24,20 +23,14 @@ namespace StronglyConnectedComponents
             this.collection.AddLast(scc);
         }
 
-        public int Count
-        {
-            get
-            {
-                return this.collection.Count;
-            }
-        }
+        public int Count => this.collection.Count;
 
         public IEnumerator<StronglyConnectedComponent<T>> GetEnumerator()
         {
             return this.collection.GetEnumerator();
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return this.collection.GetEnumerator();
         }
